@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Gallery Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="../images/LOGO.png">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Inline+One:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mohave:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pragati+Narrow:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/2.0.0/iconify.min.js" integrity="sha512-lYMiwcB608+RcqJmP93CMe7b4i9G9QK1RbixsNu4PzMRJMsqr/bUrkXUuFzCNsRUo3IXNUr5hz98lINURv5CNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+        <style>
+            @font-face {
+                font-family: 'CustomFont';
+                src: url('../fonts/NicoMoji-Regular.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+            .font-custom {
+                font-family: 'CustomFont', sans-serif;
+            }
+        </style>
+    </head>
+    <body id="body" class="w-[100vw] h-[100vh] m-0 p-0 scroll-smooth select-none gap-10 overflow-x-hidden">
+        <div id="main1" class="w-full h-auto m-0 p-0 relative">
+          <nav class="top-0 relative flex items-center w-full px-[1vw] sm:px-[2vw] md:px-[3vw] lg:px-[4vw] xl:px-[6vw] 2xl:px-[8vw] py-4 justify-around z-[10]">
+                <img class="w-[6vw]" src="../images/LOGO.png" alt="Logo">
+                <ul class="flex space-x-[8.2vw] ml-auto text-black text-xl font-normal font-['Mohave']">
+                    <li id="HOME"     class="cursor-pointer">HOME</li>
+                    <li id="PRODUCT"  class="cursor-pointer">PRODUCT</li>
+                    <li id="GALLERY"  class="text-black text-xl font-semibold font-['Mohave'] cursor-pointer">GALLERY</li>
+                    <li id="CONTACT" class="cursor-pointer">CONTACT</li>
+                    <svg id="menuBar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="cursor-pointer"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="rgba(1, 141, 148, 1)" d="M20 17.5a1.5 1.5 0 0 1 .144 2.993L20 20.5H4a1.5 1.5 0 0 1-.144-2.993L4 17.5zm0-7a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0-7a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 1 1 0-3z"/></g></svg>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="menuSection" class="w-full h-auto absolute z-[50] bg-white border-b border-slate-400 flex justify-center items-start gap-10 px-5 rounded-bl-[1.5vw] rounded-br-[1.5vw] py-10">
+            <div id="bikes" class="w-3/7 h-auto flex flex-col justify-start items-start gap-3 pr-10 border-r border-slate-500">
+                <div id="p1">
+                    <div id="b1" class="cursor-pointer flex flex-col justify-center items-center gap-0">
+                        <img src="../images/EBikewBG4.png" class="w-40">
+                        <h3 class="text-black text-xl font-medium font-['Mohave'] mt-[-0.5vw]">EVO 50X</h3>
+                        <h5 class="text-teal-500 text-[10px] font-semibold font-['Inter'] mt-[-0.5vw]">NEW</h5>
+                    </div>
+                </div>
+                <div id="p2" class="flex justify-center items-center gap-3">
+                    <div id="b2" class="cursor-pointer flex flex-col justify-center items-center gap-0">
+                        <img src="../images/EBikewBG5.png" class="w-40">
+                        <h3 class="text-black text-xl font-medium font-['Mohave'] mt-[-0.5vw]">EVO COMET</h3>
+                        <h5 class="text-teal-500 text-[10px] font-semibold font-['Inter'] mt-[-0.5vw]">NEW</h5>
+                    </div>
+                    <div id="b3" class="cursor-pointer flex flex-col justify-center items-center gap-0">
+                        <img src="../images/EBikewBG6.png" class="w-40">
+                        <h3 class="text-black text-xl font-medium font-['Mohave'] mt-[-0.5vw]">EVO GEN+ </h3>
+                    </div>
+                    <div id="b4" class="cursor-pointer flex flex-col justify-center items-center gap-0">
+                        <img src="../images/EBikewBG7.png" class="w-40">
+                        <h3 class="text-black text-xl font-medium font-['Mohave'] mt-[-0.5vw]">RENTAL SCOOTER</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="Option" class="w-4/7 h-auto flex justify-center items-start gap-5">
+                <div id="Op1" class="flex flex-col justify-start items-start gap-5 text-black text-xl font-medium font-['Mohave']">
+                    <h2 class="text-black text-2xl font-medium font-['Mohave']">Ownership</h2>
+                    <h3 class="cursor-pointer">EV.GO Electric Store</h3>
+                    <h3 class="cursor-pointer">2000 Stores</h3>
+                    <h3 class="cursor-pointer">Accessories</h3>
+                    <h3 class="cursor-pointer">Community</h3>
+                    <h3 class="cursor-pointer">Hyperservice</h3>
+                    <h3 class="cursor-pointer">Battery Warranty</h3>
+                    <h3 class="cursor-pointer">Rental Business</h3>
+                </div>
+                <div id="Op2" class="flex flex-col justify-start items-start gap-5 text-black text-xl font-medium font-['Mohave']">
+                    <h2 class="text-black text-2xl font-medium font-['Mohave']">Products</h2>
+                    <h3 class="cursor-pointer">EVO 10S</h3>
+                    <h3 class="cursor-pointer">EVO 20A</h3>
+                    <h3 class="cursor-pointer">EVO 50X</h3>
+                    <h3 class="cursor-pointer">EVO GEN+</h3>
+                    <h3 class="cursor-pointer">EVO COMET</h3>
+                    <h3 class="cursor-pointer">RENTAL SCOOTERS</h3>
+                </div>
+                <div id="Op3" class="flex flex-col justify-start items-start gap-5 text-black text-xl font-medium font-['Mohave']">
+                    <h2 class="text-black text-2xl font-medium font-['Mohave']">Contact Us</h2>
+                    <h3 id="GI" class="cursor-pointer">General Inquiry</h3>
+                    <h3 id="SI" class="cursor-pointer">Service Inquiry</h3>
+                    <h3 id="CS" class="cursor-pointer">Customer Support</h3>
+                </div>
+                <div id="Op4" class="flex flex-col justify-start items-start">
+                    <svg id="menuClose" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><path fill="rgba(1, 141, 148, 1)" fill-rule="evenodd" d="M420.48 121.813L390.187 91.52L256 225.92L121.813 91.52L91.52 121.813L225.92 256L91.52 390.187l30.293 30.293L256 286.08l134.187 134.4l30.293-30.293L286.08 256z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div id="main2" class="w-full h-auto relative flex flex-col justify-center items-center gap-5 px-0 sm:px-[1vw] md:px-[2vw] lg:px-[4vw] xl:px-[6vw] 2xl:px-[8vw] mb-5 font-['MOHAVE',sans-serif]">
+            <div id="G1" class="w-full h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-84 flex justify-center items-center gap-5 overflow-hidden">
+                <img src="../images/Gallery1.1.png" alt="" class="w-1/2 h-full rounded-[1vw] overflow-hidden">
+                <img src="../images/Gallery1.2.png" alt="" class="w-1/2 h-full rounded-[1vw] overflow-hidden">
+            </div>
+            <div id="G2" class="w-full h-64 sm:h-72 md:h-80 lg:h-84 xl:h-96 2xl:h-96 flex flex-nowrap items-center gap-5">
+                <img src="../images/Gallery2.1.png" alt="" class="w-2/5 h-full rounded-[1vw] overflow-hidden">
+                <img src="../images/Gallery2.2.png" alt="" class="w-2/5 h-full rounded-[1vw] overflow-hidden">
+                <img src="../images/Gallery2.3.png" alt="" class="w-1/5 h-full rounded-[1vw] overflow-hidden">
+            </div>
+            <div id="G3" class="w-full h-64 sm:h-72 md:h-80 lg:h-84 xl:h-96 2xl:h-96 flex justify-center items-center gap-5">
+                <img src="../images/Gallery3.1.png" alt="" class="w-2/5 h-full rounded-[1vw] overflow-hidden">
+                <img src="../images/Gallery3.2.png" alt="" class="w-1/5 h-full rounded-[1vw] overflow-hidden">
+                <img src="../images/Gallery3.3.png" alt="" class="w-2/5 h-full rounded-[1vw] overflow-hidden">
+            </div>
+            <h2 class="cursor-pointer flex justify-center items-center gap-1 text-black text-base font-bold font-['Inter']">SHOW MORE<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="20" stroke-dashoffset="20" d="M12 3l0 17.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="20;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M12 21l7 -7M12 21l-7 -7"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.2s" values="12;0"/></path></g></svg></h2>
+        </div>
+        <div id="main9" class="w-full h-auto flex justify-center items-center bg-[rgb(38,50,56)] px-0 font-['MOHAVE',sans-serif]">
+            <div id="Contact" class="w-[95vw] h-full flex justify-center items-start px-10 gap-[6vw] py-[2.5vw] text-slate-300">
+                <div id="WebName" class="w-1/9 h-auto text-white text-3xl font-normal font-['Alumni_Sans_Inline_One'] mt-[-0.5vw]">EV.GO!</div>
+                <div id="ConProduct" class=" flex flex-col text-stone-300 text-base font-medium font-['Mohave'] gap-2">
+                    <div id="title" class="text-white text-xl font-medium font-['Mohave']">Products</div>
+                    <div id="ConPro" class="cursor-pointer mt-3">EVO 10</div>
+                    <div id="ConPro" class="cursor-pointer">EVO 10 PRO</div>
+                    <div id="ConPro" class="cursor-pointer">EVO 20</div>
+                    <div id="ConPro" class="cursor-pointer">EVO 20+</div>
+                    <div id="ConPro" class="cursor-pointer">EVO GENA</div>
+                    <div id="ConPro" class="cursor-pointer">EVO GEN+</div>
+                    <div id="ConPro" class="cursor-pointer">EVO COMET </div>
+                    <div id="ConPro" class="cursor-pointer">RENTAL SCOOTERS </div>
+                </div>
+                <div id="ConTandD" class=" flex flex-col text-stone-300 text-base font-medium font-['Mohave'] gap-2">
+                    <div id="title" class="text-white text-xl font-medium font-['Mohave']">Tech & Design</div>
+                    <div id="TD" class="cursor-pointer">Software</div>
+                    <div id="TD" class="cursor-pointer">APP</div>
+                    <div id="TD" class="cursor-pointer">Manufacturing</div>
+                    <div id="TD" class="cursor-pointer">Design</div>
+                    <div id="TD" class="cursor-pointer">Future Factory</div>
+                </div>
+                <div id="ConOS" class=" flex flex-col text-stone-300 text-base font-medium font-['Mohave'] gap-2">
+                    <div id="title" class="text-white text-xl font-medium font-['Mohave']">Ownership</div>
+                    <div id="os" class="cursor-pointer">EV.GO Electric Store</div>
+                    <div id="os" class="cursor-pointer">4000 Stores</div>
+                    <div id="os" class="cursor-pointer">Accessories</div>
+                    <div id="os" class="cursor-pointer">Community</div>
+                    <div id="os" class="cursor-pointer">Hyperservice</div>
+                    <div id="os" class="cursor-pointer">Battery Warranty</div>
+                    <div id="os" class="cursor-pointer">RENTAL BUSINESS</div>
+                </div>
+                <div id="ConCompany" class=" flex flex-col text-stone-300 text-base font-medium font-['Mohave'] gap-2">
+                    <div id="title" class="text-white text-xl font-medium font-['Mohave']">Company</div>
+                    <div id="ConCom" class="cursor-pointer">About Us</div>
+                    <div id="ConCom" class="cursor-pointer">Investor</div>
+                    <div id="ConCom" class="cursor-pointer">Blogs</div>
+                    <div id="ConCom" class="cursor-pointer">Careers</div>
+                </div>
+                <div id="Extra" class="w-[15vw] flex flex-col gap-3">
+                    <div id="iconsList" class="flex justify-start items-center gap-3">
+                        <img src="../SVG/Instagram.svg" class="w-5">
+                        <img src="../SVG/YoutubeSVG.svg" class="w-6">
+                        <img src="../SVG/FaceBook.svg" class="w-4">
+                        <img src="../SVG/TwitterSVG.svg" class="w-6">
+                        <img src="../SVG/LinkedIn.svg" class="w-6">
+                    </div>
+                    <div id="Context" class="text-white text-base font-medium font-['Mohave']">The EV.GO rental scooter app is coming soon to Play Store and the App Store.</div>
+                    <div id="imgList" class="flex justify-start items-center gap-4">
+                        <img src="../images\PlayStore.png" class="w-[2.5vw]">
+                        <img src="../images\AppStore.png" class="w-[2.5vw]">
+                    </div>
+                    <div id="Context" class="text-stone-300 text-sm font-medium font-['Mohave']">Stay tuned for a smarter, greener, and more convenient ride</div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="Gallery.js" type="module" async defer></script>
+    </body>
+</html>

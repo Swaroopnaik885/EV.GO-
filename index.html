@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="images\LOGO.png">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Inline+One:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mohave:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pragati+Narrow:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/2.0.0/iconify.min.js" integrity="sha512-lYMiwcB608+RcqJmP93CMe7b4i9G9QK1RbixsNu4PzMRJMsqr/bUrkXUuFzCNsRUo3IXNUr5hz98lINURv5CNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+        <style>
+            @font-face {
+                font-family: 'CustomFont';
+                src: url('fonts/NicoMoji-Regular.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+            .font-custom {
+                font-family: 'CustomFont', sans-serif;
+            }
+            .circle {
+                position: absolute;
+                background: rgba(82, 222, 229, 1);
+                transition: transform 1s ease-in-out, 
+                    width 1s ease-in-out, 
+                    height 1s ease-in-out, 
+                    border-radius 1s ease-in-out;
+                }
+            @keyframes slideIn {
+              from {
+                transform: translateX(5vw);
+                opacity: 0;
+              }
+              to {
+                transform: translateX(0);
+                opacity: 1;
+              }
+            }
+            .animate-slide-in {
+              animation: slideIn 1.5s ease-out forwards;
+            }
+            .hide{
+                position: absolute; 
+                transform: translateX(-100%);
+                opacity: 0; 
+                visibility: hidden;
+            }
+            #products-wrapper::-webkit-scrollbar {
+              display: none;
+            }
+            #products-wrapper {
+              scrollbar-width: none;
+            }
+            #container > div {
+            transition: flex-grow 0.5s ease-in-out;
+            }
+            .filtered-bg::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: inherit;
+                filter: contrast(50%);
+                transition: filter 0.25s ease-in-out;
+                z-index: 0;
+            }
+
+        </style>
+    </head>
+    <body id="body" class="w-full h-full m-0 p-0 scroll-smooth select-none overflow-x-hidden">
+        <div id="main1" class="w-full h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-full xl:h-full 2xl:h-auto bg-[url('images/Background.png')] bg-cover bg-center bg-no-repeat pb-[0.5vw]">
+            <nav class="top-0 relative flex items-center w-full px-[1vw] sm:px-[2vw] md:px-[3vw] lg:px-[4vw] xl:px-[6vw] 2xl:px-[8vw] py-4 justify-around z-[10]">
+                <img class="w-[6vw]" src="images/LOGO.png" alt="Logo">
+                <ul class="flex space-x-[8.2vw] ml-auto text-black text-xl font-normal font-['Mohave']">
+                    <li id="HOME"     class="text-black text-xl font-semibold font-['Mohave'] cursor-pointer">HOME</li>
+                    <li id="PRODUCT"  class="cursor-pointer">PRODUCT</li>
+                    <li id="GALLERY"  class="cursor-pointer">GALLERY</li>
+                    <li id="CONTACT" class="cursor-pointer">CONTACT</li>
+                    <svg id="menuBar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="cursor-pointer"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="rgba(1, 141, 148, 1)" d="M20 17.5a1.5 1.5 0 0 1 .144 2.993L20 20.5H4a1.5 1.5 0 0 1-.144-2.993L4 17.5zm0-7a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0-7a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 1 1 0-3z"/></g></svg>
+                </ul>
+            </nav>
+            <div id="moveBG" class="w-[50%] h-[100%] z-[0] absolute top-0">
+                <div id="container" class="container relative w-full h-full overflow-hidden opacity-[0.8] blur-[80px]">
+                    <div id="circle1" class="circle"></div>
+                    <div id="circle2" class="circle"></div>
+                </div>
+            </div>
+            <div id="info" class="w-full h-auto flex flex-col sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-between px-[1vw] sm:px-[2vw] md:px-[3vw] lg:px-[4vw] xl:px-[6vw] 2xl:px-[8vw]  py-[5vw] z-[20] mb-[-2vw]">
+                <div id="sec1" class="w-full sm:w-[80vw] md:w-[60vw] lg:w-[40vw] xl:w-[30vw] 2xl:w-[20vw] flex flex-col justify-start items-start gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-5 z-[20]">
+                    <div id="text1-sec1" class="w-auto h-auto p-0 font-custom text-black text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl font-normal tracking-[4.48px]">TAKE . RIDE . GO</div>
+                    <div id="text2-sec1" class="w-full sm:w-[60vw] md:w-[40vw] lg:w-[40vw] xl:w-[30vw] 2xl:[20vw] h-auto py-1 text-black text-xl sm:text-2xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-semibold font-['Mohave'] tracking-[6.72px] uppercase">REVOLUTIONARY Technology</div>
+                    <div id="text4-sec1" class="w-[90vw] sm:w-[70vw] md:w-[45vw] lg:w-[40vw] xl:w-[35vw] 2xl:w-[30vw] h-auto p-0 text-black text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-semibold font-['Mohave']">
+                        REVOLUTIONARY COMPACT E-BIKE DESIGNED FOR THE FUTURE OF URBAN MOBILITY
+                    </div>
+                    <button type="submit" class="w-52 h-16 items-center justify-center flex gap-2 rounded-[1.5vw] text-black text-sm sm:text-xl md:text-lg lg:text-xl xl:text-xl 2xl:text-3xl font-semibold font-['Mohave'] shadow-lg bg-[radial-gradient(ellipse_190.45%_6301.96%_at_0.00%_-0.00%,_#BFF0F3_1%,_#00AFB8_100%)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] border border-[#25E3EDFF] z-[30]">
+                        Secure Your Ride
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"/></svg>
+                    </button>
+                </div>
+
+                
+                <img src="images\EBikewBG1.png" id="bikeImg" class="w-[50vw] sm:w-[50vw] md:w-[35vw] lg:w-[35vw] xl:w-[35vw] 2xl:w-[40vw] absolute mt-[-4vw] sm:mt-[10vw] md:mt-[5vw] lg:mt-[-2vw] xl:mt-[-1.5vw] 2xl:mt-[0vw] ml-[10vw] sm:ml-[20vw] md:ml-[36vw] lg:ml-[40vw] xl:ml-[32vw] 2xl:ml-[32vw] z-[30] transform translate-x-[5vw] animate-slide-in">
+                <div id="sec2" class="w-full h-[50%] flex flex-col justify-start items-end gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-4 mt-[-2vw]">
+                    <div id="text1-sec2" class="w-auto h-auto text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal font-['Alumni_Sans_Inline_One']">
+                        EV.GO!
+                    </div>
+                    <div id="text2-sec2" class="w-full h-auto gap-0 font-custom text-right text-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-normal
+                        bg-gradient-to-b from-[#000000] via-[#2E4F5E] via-[#4D7C8A] via-[#709DA6] to-[#94B3B6] 
+                        bg-clip-text text-transparent opacity-[0.6] mt-[-2vw]">
+                        EVO 10
+                    </div>
+                    <div id="quality-section" class="flex justify-center items-end gap-[7.5vw] mt-[-1.5vw]">
+                        <div id="btnSld" class="w-full h-[1vw] flex justify-center items-center font-custom text-[2vw] font-[950] gap-[0.3vw]">
+                            <div id="sl1" class="w-auto h-auto text-black">-</div>
+                            <div id="sl2" class="w-auto h-auto text-white">-</div>
+                            <div id="sl3" class="w-auto h-auto text-white">-</div>
+                        </div>
+                        <div id="ADV"
+                            class="w-auto h-auto flex flex-col bg-white/20 border border-[rgb(175,175,175)] rounded-[1vw] py-5 sm:py-2 md:py-3 lg:py-4 xl:py-5 2xl:py-6 px-1 sm:px-2 md:px-3 lg:px-4 xl:px-5 2xl:px-6 gap-1 sm:gap-1 md:gap-1 lg:gap-2 xl:gap-3 2xl:gap-4">
+                            <div id="advantage1"
+                                class="w-[30vw] sm:w-[15vw] md:w-[12.5vw] lg:w-[10vw] xl:w-[8vw] 2xl:w-[6vw] h-auto flex flex-col justify-center items-center text-center text-black text-base font-bold font-['Mohave']">
+                                <div id="adv">Riding Range</div>
+                                <div id="value2">176 km</div>
+                            </div>
+                            <div id="advantage2"
+                                class="w-[30vw] sm:w-[15vw] md:w-[12.5vw] lg:w-[10vw] xl:w-[8vw] 2xl:w-[6vw] h-auto flex flex-col justify-center items-center text-center text-black text-base font-bold font-['Mohave']">
+                                <div id="adv">Battery Capacity (kWh)</div>
+                                <div id="value3">4</div>
+                            </div>
+                            <div id="advantage3"
+                                class="w-[30vw] sm:w-[15vw] md:w-[12.5vw] lg:w-[10vw] xl:w-[8vw] 2xl:w-[6vw] h-auto flex flex-col justify-center items-center text-center text-black text-base font-bold font-['Mohave'] px-1">
+                                <div id="adv">Charging Time (0-80%) (hrs)</div>
+                                <div id="value4">4.5</div>
+                            </div>
+                            <div id="advantage4"
+                                class="w-[30vw] sm:w-[15vw] md:w-[12.5vw] lg:w-[10vw] xl:w-[8vw] 2xl:w-[6vw] h-auto flex flex-col justify-center items-center text-center text-black text-base font-bold font-['Mohave']">
+                                <div id="adv">Top Speed</div>
+                                <div id="value1">117 kmph</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+            <div id="feature-section" class="w-full h-auto flex flex-col justify-center items-center">
+                <div id="fties" class="w-full sm:w-[95%] md:w-[92.5%] lg:w-[90%] xl:w-[87.5%] 2xl:w-[85%] h-auto flex flex-col justify-center items-center font-['MOHAVE',sans-serif] font-medium bg-white/20 border-[0.1vw] border-[rgb(175,175,175)] rounded-[3vw] py-1 sm:py-2 md:py-3 lg:py-4 xl:py-5 2xl:py-5 z-[20] gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-5">
+                    <h3 class="text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-semibold font-['Mohave']">Features of This Electric Bike</h3>    
+                    <div id="Features" class="w-full h-auto flex justify-evenly items-center">
+                        <div id="ftr" class="w-auto h-auto flex flex-col justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-5 text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium font-['Mohave']">
+                            <img src="SVG\Dashbord.svg" class="w-[2vw]">
+                            <h3> Digital Dashboard </h3>
+                        </div>
+                        <div id="ftr" class="w-auto h-auto flex flex-col justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-5 text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium font-['Mohave']">
+                            <img src="SVG\Motor.svg" class="w-[2.25vw]">
+                            <h3>Powerful Electric Motor</h3>
+                        </div>
+                        <div id="ftr" class="w-auto h-auto flex flex-col justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-5 text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium font-['Mohave']">
+                            <img src="SVG\Battery.svg" class="w-[2.25vw]">
+                            <h3>Hidden Battery</h3>
+                        </div>
+                        <div id="ftr" class="w-auto h-auto flex flex-col justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-5 text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium font-['Mohave']">
+                            <img src="SVG\LED.svg" class="w-[2.25vw]">
+                            <h3>LED Headlight</h3>
+                        </div>
+                        <div id="ftr" class="w-auto h-auto flex flex-col justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-5 text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium font-['Mohave']">
+                            <img src="SVG\Tires.svg" class="w-[2.25vw]">
+                            <h3>Terrain Tires</h3>
+                        </div>
+                        <div id="ftr" class="w-auto h-auto flex flex-col justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-5 text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium font-['Mohave']">
+                            <img src="SVG\Safety feature.svg" class="w-[2.25vw]">
+                            <h3>Safety Features</h3>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+
+        <div id="menuSection" class="w-full h-auto absolute z-[50] bg-white border-b border-slate-400 flex justify-center items-start gap-10 px-5 rounded-bl-[1.5vw] rounded-br-[1.5vw] py-10">
+            <div id="bikes" class="w-3/7 h-auto flex flex-col justify-start items-start gap-3 pr-10 border-r border-slate-500">
+                <div id="p1">
+                    <div id="b1" class="cursor-pointer flex flex-col justify-center items-center gap-0">
+                        <img src="../images/EBikewBG4.png" class="w-40">
+                        <h3 class="text-black text-xl font-medium font-['Mohave'] mt-[-0.5vw]">EVO 50X</h3>
+                        <h5 class="text-teal-500 text-[10px] font-semibold font-['Inter'] mt-[-0.5vw]">NEW</h5>
+                    </div>
+                </div>
+                <div id="p2" class="flex justify-center items-center gap-3">
+                    <div id="b2" class="cursor-pointer flex flex-col justify-center items-center gap-0">
+                        <img src="../images/EBikewBG5.png" class="w-40">
+                        <h3 class="text-black text-xl font-medium font-['Mohave'] mt-[-0.5vw]">EVO COMET</h3>
+                        <h5 class="text-teal-500 text-[10px] font-semibold font-['Inter'] mt-[-0.5vw]">NEW</h5>
+                    </div>
+                    <div id="b3" class="cursor-pointer flex flex-col justify-center items-center gap-0">
+                        <img src="../images/EBikewBG6.png" class="w-40">
+                        <h3 class="text-black text-xl font-medium font-['Mohave'] mt-[-0.5vw]">EVO GEN+ </h3>
+                    </div>
+                    <div id="b4" class="cursor-pointer flex flex-col justify-center items-center gap-0">
+                        <img src="../images/EBikewBG7.png" class="w-40">
+                        <h3 class="text-black text-xl font-medium font-['Mohave'] mt-[-0.5vw]">RENTAL SCOOTER</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="Option" class="w-4/7 h-auto flex justify-center items-start gap-5">
+                <div id="Op1" class="flex flex-col justify-start items-start gap-5 text-black text-xl font-medium font-['Mohave']">
+                    <h2 class="text-black text-2xl font-medium font-['Mohave']">Ownership</h2>
+                    <h3 class="cursor-pointer">EV.GO Electric Store</h3>
+                    <h3 class="cursor-pointer">2000 Stores</h3>
+                    <h3 class="cursor-pointer">Accessories</h3>
+                    <h3 class="cursor-pointer">Community</h3>
+                    <h3 class="cursor-pointer">Hyperservice</h3>
+                    <h3 class="cursor-pointer">Battery Warranty</h3>
+                    <h3 class="cursor-pointer">Rental Business</h3>
+                </div>
+                <div id="Op2" class="flex flex-col justify-start items-start gap-5 text-black text-xl font-medium font-['Mohave']">
+                    <h2 class="text-black text-2xl font-medium font-['Mohave']">Products</h2>
+                    <h3 class="cursor-pointer">EVO 10S</h3>
+                    <h3 class="cursor-pointer">EVO 20A</h3>
+                    <h3 class="cursor-pointer">EVO 50X</h3>
+                    <h3 class="cursor-pointer">EVO GEN+</h3>
+                    <h3 class="cursor-pointer">EVO COMET</h3>
+                    <h3 class="cursor-pointer">RENTAL SCOOTERS</h3>
+                </div>
+                <div id="Op3" class="flex flex-col justify-start items-start gap-5 text-black text-xl font-medium font-['Mohave']">
+                    <h2 class="text-black text-2xl font-medium font-['Mohave']">Contact Us</h2>
+                    <h3 id="GI" class="cursor-pointer">General Inquiry</h3>
+                    <h3 id="SI" class="cursor-pointer">Service Inquiry</h3>
+                    <h3 id="CS" class="cursor-pointer">Customer Support</h3>
+                </div>
+                <div id="Op4" class="flex flex-col justify-start items-start">
+                    <svg id="menuClose" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><path fill="rgba(1, 141, 148, 1)" fill-rule="evenodd" d="M420.48 121.813L390.187 91.52L256 225.92L121.813 91.52L91.52 121.813L225.92 256L91.52 390.187l30.293 30.293L256 286.08l134.187 134.4l30.293-30.293L286.08 256z"/></svg>
+                </div>
+            </div>
+        </div>
+        <div id="main2" class="w-full h-full flex flex-col py-[2.5vw] bg-white mt-[-0.1vw]">
+            <div id="product-section" class="w-full h-auto flex justify-center items-center overflow-hidden">
+                <div id="product-slider" class="w-full h-auto flex justify-center items-center">
+                    <div id="products-wrapper" class="w-full h-auto flex justify-between items-center gap-[1vw] sm:gap-[1.5vw] md:gap-[2vw] lg:gap-[2.5vw] xl:gap-[3vw] 2xl:gap-[3vw] px-2 sm:px-[4vw] md:px-[6vw] lg:px-[8vw] xl:px-[10vw] 2xl:px-[12vw] overflow-x-hidden scroll-smooth">
+                        <div id="product1" class="w-auto h-auto relative flex flex-col justify-center items-center mt-[1vw]">
+                            <div id="box1" class="w-[32.5vw] sm:w-[30vw] md:w-[27.5vw] lg:w-[25vw] xl:w-[22.5vw] 2xl:w-[20vw] h-64 sm:h-72 md:h-80 lg:h-96 xl:h-96 2xl:h-96 flex flex-col justify-start items-end bg-gradient-to-t from-[#DBF3F5] to-[#67EFF7FF] rounded-[3vw] pt-2 pr-7">
+                                <h4 class="opacity-50 text-black text-3xl font-normal font-['Alumni_Sans_Inline_One']">EV.GO!</h4>
+                                <h4 class="font-custom text-white text-base font-normal mt-[-0.75vw]">EVO 10</h4>
+                            </div>
+                            <img src="images\EBikewBG1.png" class="w-80 h-80 absolute mt-[-2.5vw] z-[20]">
+                            <div id="box2" class="w-80 h-32 absolute flex justify-center items-end bg-white/50 mt-[16vw] z-[10] border border-[rgb(150,150,150)] rounded-[1.25vw] py-3 px-4">
+                                <div id="adv" class="w-auto h-auto flex justify-center items-center font-['MOHAVE',sans-serif] font-semibold text-[0.6vw] gap-[0.3vw]">
+                                    <div id="ad1" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/SpeedMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">TopSpeed</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">100km/h</h3>
+                                    </div>
+                                    <div id="ad2" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/RangeMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Range</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">80km/charge</h3>
+                                    </div>
+                                    <div id="ad3" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <svg class="w-[1.25vw]" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                                            <defs>
+                                                <mask id="ipTBrakePads0">
+                                                    <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                                                        <path d="M24 40c8.837 0 16-7.163 16-16S32.837 8 24 8S8 15.163 8 24s7.163 16 16 16"/>
+                                                        <path fill="#555555" d="M24 28a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0-24a20 20 0 0 1 20 20h-7.994A12.006 12.006 0 0 0 24 11.994z"/>
+                                                    </g>
+                                                </mask>
+                                            </defs>
+                                            <path fill="#000" d="M0 0h48v48H0z" mask="url(#ipTBrakePads0)"/>
+                                        </svg>
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Brakes</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">Disc</h3>
+                                    </div>
+                                    <svg class="w-auto h-auto flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                        <path fill="rgba(82, 222, 229, 1)" d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="box3" class="w-80 h-auto flex justify-between items-center font-['MOHAVE',sans-serif] font-semibold text-[0.75vw] p-3">
+                                <div id="p1" class="flex flex-col justify-center items-start">
+                                    <h3 class="text-black text-base font-medium font-['Mohave']">Rs.99,820 - 1.30 Lakh*</h3>
+                                    <h4 class="text-black text-[10px] font-light font-['Mohave']">*Ex-showroom price</h4>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="opacity-50" width="30" height="30" viewBox="0 0 20 20"><path fill="#000" fill-rule="evenodd" d="M10 .5a.5.5 0 0 0-.5.5v18a.5.5 0 0 0 1 0V1a.5.5 0 0 0-.5-.5" clip-rule="evenodd"/></svg>
+                                <div id="p2" class="flex flex-col justify-center items-center">
+                                    <button class="w-auto h-auto px-4 pt-[0.1vw] border-2 border-[rgb(0,175,184)] text-[0.9vw] rounded-[1vw]">KNOW MORE</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="product2" class="w-auto h-auto relative flex flex-col justify-center items-center mt-[1vw]">
+                            <div id="box1" class="w-[32.5vw] sm:w-[30vw] md:w-[27.5vw] lg:w-[25vw] xl:w-[22.5vw] 2xl:w-[20vw] h-64 sm:h-72 md:h-80 lg:h-96 xl:h-96 2xl:h-96 flex flex-col justify-start items-end bg-gradient-to-t from-[#DBF3F5] to-[#67EFF7FF] rounded-[3vw] pt-2 pr-7">
+                                <h4 class="opacity-50 text-black text-3xl font-normal font-['Alumni_Sans_Inline_One']">EV.GO!</h4>
+                                <h4 class="font-custom text-white text-base font-normal mt-[-0.75vw]">EVO 50X</h4>
+                            </div>
+                            <img src="images/EBikewBG4.png" class="w-80 h-80 absolute mt-[-1vw] z-[20]">
+                            <div id="box2" class="w-80 h-32 absolute flex justify-center items-end bg-white/50 mt-[16vw] z-[10] border border-[rgb(150,150,150)] rounded-[1.25vw] py-3 px-4">
+                                <div id="adv" class="w-auto h-auto flex justify-center items-center font-['MOHAVE',sans-serif] font-semibold text-[0.6vw] gap-[0.3vw]">
+                                    <div id="ad1" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/SpeedMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">TopSpeed</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">120km/Hr</h3>
+                                    </div>
+                                    <div id="ad2" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/RangeMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Range</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">150km/charge</h3>
+                                    </div>
+                                    <div id="ad3" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <svg class="w-[1.25vw]" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                                            <defs>
+                                                <mask id="ipTBrakePads0">
+                                                    <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                                                        <path d="M24 40c8.837 0 16-7.163 16-16S32.837 8 24 8S8 15.163 8 24s7.163 16 16 16"/>
+                                                        <path fill="#555555" d="M24 28a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0-24a20 20 0 0 1 20 20h-7.994A12.006 12.006 0 0 0 24 11.994z"/>
+                                                    </g>
+                                                </mask>
+                                            </defs>
+                                            <path fill="#000" d="M0 0h48v48H0z" mask="url(#ipTBrakePads0)"/>
+                                        </svg>
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Brakes</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">Disc</h3>
+                                    </div>
+                                    <svg class="w-auto h-auto flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                        <path fill="rgba(82, 222, 229, 1)" d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="box3" class="w-80 h-auto flex justify-between items-center font-['MOHAVE',sans-serif] font-semibold text-[0.75vw] p-3">
+                                <div id="p1" class="flex flex-col justify-center items-start">
+                                    <h3 class="text-black text-base font-medium font-['Mohave']">Rs.99,820 - 1.30 Lakh*</h3>
+                                    <h4 class="text-black text-[10px] font-light font-['Mohave']">*Ex-showroom price</h4>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="opacity-50" width="30" height="30" viewBox="0 0 20 20"><path fill="#000" fill-rule="evenodd" d="M10 .5a.5.5 0 0 0-.5.5v18a.5.5 0 0 0 1 0V1a.5.5 0 0 0-.5-.5" clip-rule="evenodd"/></svg>
+                                <div id="p2" class="flex flex-col justify-center items-center">
+                                    <button class="w-auto h-auto px-4 pt-[0.1vw] border-2 border-[rgb(0,175,184)] text-[0.9vw] rounded-[1vw]">KNOW MORE</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="product3" class="w-auto h-auto relative flex flex-col justify-center items-center mt-[1vw]">
+                            <div id="box1" class="w-[32.5vw] sm:w-[30vw] md:w-[27.5vw] lg:w-[25vw] xl:w-[22.5vw] 2xl:w-[20vw] h-64 sm:h-72 md:h-80 lg:h-96 xl:h-96 2xl:h-96 flex flex-col justify-start items-end bg-gradient-to-t from-[#DBF3F5] to-[#67EFF7FF] rounded-[3vw] pt-2 pr-7">
+                                <h4 class="opacity-50 text-black text-3xl font-normal font-['Alumni_Sans_Inline_One']">EV.GO!</h4>
+                                <h4 class="font-custom text-white text-base font-normal mt-[-0.75vw]">EVO 20A</h4>
+                            </div>
+                            <img src="images/EBikewBG2.png" class="w-80 h-80 absolute mt-[-3vw] ml-[-0.5vw] z-[20]">
+                            <div id="box2" class="w-80 h-32 absolute flex justify-center items-end bg-white/50 mt-[16vw] z-[10] border border-[rgb(150,150,150)] rounded-[1.25vw] py-3 px-4">
+                                <div id="adv" class="w-auto h-auto flex justify-center items-center font-['MOHAVE',sans-serif] font-semibold text-[0.6vw] gap-[0.3vw]">
+                                    <div id="ad1" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/SpeedMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">TopSpeed</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">150km/Hr</h3>
+                                    </div>
+                                    <div id="ad2" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/RangeMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Range</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">150km/charge</h3>
+                                    </div>
+                                    <div id="ad3" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <svg class="w-[1.25vw]" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                                            <defs>
+                                                <mask id="ipTBrakePads0">
+                                                    <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                                                        <path d="M24 40c8.837 0 16-7.163 16-16S32.837 8 24 8S8 15.163 8 24s7.163 16 16 16"/>
+                                                        <path fill="#555555" d="M24 28a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0-24a20 20 0 0 1 20 20h-7.994A12.006 12.006 0 0 0 24 11.994z"/>
+                                                    </g>
+                                                </mask>
+                                            </defs>
+                                            <path fill="#000" d="M0 0h48v48H0z" mask="url(#ipTBrakePads0)"/>
+                                        </svg>
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Brakes</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">Disc</h3>
+                                    </div>
+                                    <svg class="w-auto h-auto flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                        <path fill="rgba(82, 222, 229, 1)" d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="box3" class="w-80 h-auto flex justify-between items-center font-['MOHAVE',sans-serif] font-semibold text-[0.75vw] p-3">
+                                <div id="p1" class="flex flex-col justify-center items-start">
+                                    <h3 class="text-black text-base font-medium font-['Mohave']">Rs.95,700 - 1.21 Lakh*</h3>
+                                    <h4 class="text-black text-[10px] font-light font-['Mohave']">*Ex-showroom price</h4>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="opacity-50" width="30" height="30" viewBox="0 0 20 20"><path fill="#000" fill-rule="evenodd" d="M10 .5a.5.5 0 0 0-.5.5v18a.5.5 0 0 0 1 0V1a.5.5 0 0 0-.5-.5" clip-rule="evenodd"/></svg>
+                                <div id="p2" class="flex flex-col justify-center items-center">
+                                    <button class="w-auto h-auto px-4 pt-[0.1vw] border-2 border-[rgb(0,175,184)] text-[0.9vw] rounded-[1vw]">KNOW MORE</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="product4" class="w-auto h-auto relative flex flex-col justify-center items-center mt-[1vw]">
+                            <div id="box1" class="w-[32.5vw] sm:w-[30vw] md:w-[27.5vw] lg:w-[25vw] xl:w-[22.5vw] 2xl:w-[20vw] h-64 sm:h-72 md:h-80 lg:h-96 xl:h-96 2xl:h-96 flex flex-col justify-start items-end bg-gradient-to-t from-[#DBF3F5] to-[#67EFF7FF] rounded-[3vw] pt-2 pr-7">
+                                <h4 class="opacity-50 text-black text-3xl font-normal font-['Alumni_Sans_Inline_One']">EV.GO!</h4>
+                                <h4 class="font-custom text-white text-base font-normal mt-[-0.75vw]">EVO 50X</h4>
+                            </div>
+                            <img src="images/EBikewBG3.png" class="w-80 h-80 absolute mt-[-3vw] ml-[1vw] z-[20]">
+                            <div id="box2" class="w-80 h-32 absolute flex justify-center items-end bg-white/50 mt-[16vw] z-[10] border border-[rgb(150,150,150)] rounded-[1.25vw] py-3 px-4">
+                                <div id="adv" class="w-auto h-auto flex justify-center items-center font-['MOHAVE',sans-serif] font-semibold text-[0.6vw] gap-[0.3vw]">
+                                    <div id="ad1" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/SpeedMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">TopSpeed</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">80km/Hr</h3>
+                                    </div>
+                                    <div id="ad2" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/RangeMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Range</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">90km/charge</h3>
+                                    </div>
+                                    <div id="ad3" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <svg class="w-[1.25vw]" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                                            <defs>
+                                                <mask id="ipTBrakePads0">
+                                                    <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                                                        <path d="M24 40c8.837 0 16-7.163 16-16S32.837 8 24 8S8 15.163 8 24s7.163 16 16 16"/>
+                                                        <path fill="#555555" d="M24 28a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0-24a20 20 0 0 1 20 20h-7.994A12.006 12.006 0 0 0 24 11.994z"/>
+                                                    </g>
+                                                </mask>
+                                            </defs>
+                                            <path fill="#000" d="M0 0h48v48H0z" mask="url(#ipTBrakePads0)"/>
+                                        </svg>
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Brakes</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">Disc</h3>
+                                    </div>
+                                    <svg class="w-auto h-auto flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                        <path fill="rgba(82, 222, 229, 1)" d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="box3" class="w-80 h-auto flex justify-between items-center font-['MOHAVE',sans-serif] font-semibold text-[0.75vw] p-3">
+                                <div id="p1" class="flex flex-col justify-center items-start">
+                                    <h3 class="text-black text-base font-medium font-['Mohave']">Rs.99,820 - 1.5 Lakh*</h3>
+                                    <h4 class="text-black text-[10px] font-light font-['Mohave']">*Ex-showroom price</h4>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="opacity-50" width="30" height="30" viewBox="0 0 20 20"><path fill="#000" fill-rule="evenodd" d="M10 .5a.5.5 0 0 0-.5.5v18a.5.5 0 0 0 1 0V1a.5.5 0 0 0-.5-.5" clip-rule="evenodd"/></svg>
+                                <div id="p2" class="flex flex-col justify-center items-center">
+                                    <button class="w-auto h-auto px-4 pt-[0.1vw] border-2 border-[rgb(0,175,184)] text-[0.9vw] rounded-[1vw]">KNOW MORE</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="product5" class="w-auto h-auto relative flex flex-col justify-center items-center mt-[1vw]">
+                            <div id="box1" class="w-[32.5vw] sm:w-[30vw] md:w-[27.5vw] lg:w-[25vw] xl:w-[22.5vw] 2xl:w-[20vw] h-64 sm:h-72 md:h-80 lg:h-96 xl:h-96 2xl:h-96 flex flex-col justify-start items-end bg-gradient-to-t from-[#DBF3F5] to-[#67EFF7FF] rounded-[3vw] pt-2 pr-7">
+                                <h4 class="opacity-50 text-black text-3xl font-normal font-['Alumni_Sans_Inline_One']">EV.GO!</h4>
+                                <h4 class="font-custom text-white text-base font-normal mt-[-0.75vw]">EVO 50X</h4>
+                            </div>
+                            <img src="images\EBikewBG5.png" class="w-80 h-80 absolute mt-[-1vw] z-[20]">
+                            <div id="box2" class="w-80 h-32 absolute flex justify-center items-end bg-white/50 mt-[16vw] z-[10] border border-[rgb(150,150,150)] rounded-[1.25vw] py-3 px-4">
+                                <div id="adv" class="w-auto h-auto flex justify-center items-center font-['MOHAVE',sans-serif] font-semibold text-[0.6vw] gap-[0.3vw]">
+                                    <div id="ad1" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/SpeedMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">TopSpeed</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">120km/Hr</h3>
+                                    </div>
+                                    <div id="ad2" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <img src="SVG/RangeMeter.svg" class="w-[1.25vw]">
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Range</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">150km/charge</h3>
+                                    </div>
+                                    <div id="ad3" class="w-auto h-auto flex justify-center items-center gap-[0.25vw]">
+                                        <svg class="w-[1.25vw]" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                                            <defs>
+                                                <mask id="ipTBrakePads0">
+                                                    <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                                                        <path d="M24 40c8.837 0 16-7.163 16-16S32.837 8 24 8S8 15.163 8 24s7.163 16 16 16"/>
+                                                        <path fill="#555555" d="M24 28a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0-24a20 20 0 0 1 20 20h-7.994A12.006 12.006 0 0 0 24 11.994z"/>
+                                                    </g>
+                                                </mask>
+                                            </defs>
+                                            <path fill="#000" d="M0 0h48v48H0z" mask="url(#ipTBrakePads0)"/>
+                                        </svg>
+                                        <h4 class="text-black text-[10px] font-light font-['Mohave']">Brakes</h4>
+                                        <h3 class="text-black text-[10px] font-medium font-['Mohave']">Disc</h3>
+                                    </div>
+                                    <svg class="w-auto h-auto flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                        <path fill="rgba(82, 222, 229, 1)" d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="box3" class="w-80 h-auto flex justify-between items-center font-['MOHAVE',sans-serif] font-semibold text-[0.75vw] p-3">
+                                <div id="p1" class="flex flex-col justify-center items-start">
+                                    <h3 class="text-black text-base font-medium font-['Mohave']">Rs.99,820 - 1.30 Lakh*</h3>
+                                    <h4 class="text-black text-[10px] font-light font-['Mohave']">*Ex-showroom price</h4>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="opacity-50" width="30" height="30" viewBox="0 0 20 20"><path fill="#000" fill-rule="evenodd" d="M10 .5a.5.5 0 0 0-.5.5v18a.5.5 0 0 0 1 0V1a.5.5 0 0 0-.5-.5" clip-rule="evenodd"/></svg>
+                                <div id="p2" class="flex flex-col justify-center items-center">
+                                    <button class="w-auto h-auto px-4 pt-[0.1vw] border-2 border-[rgb(0,175,184)] text-[0.9vw] rounded-[1vw]">KNOW MORE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scrollArrows" class="w-[90%] flex justify-between items-center absolute mt-[0vw] z-[50]">
+                        <svg id="scrl-left" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="none" stroke-linecap="round" stroke-linejoin="round" d="m14 7l-5 5l5 5" stroke-width="1"/></svg>
+                        <svg id="scrl-right" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="none" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5" stroke-width="1"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div id="SpecialFeatures" class="w-full h-auto relative flex justify-center items-center overflow-hidden z-[30]">
+                <div id="container" class="w-full h-auto flex justify-center items-center overflow-hidden gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8 px-[2vw] sm:px-[3vw] md:px-[4vw] lg:px-[5vw] xl:px-[6vw] 2xl:px-[7vw] pt-[2.5vw] font-['MOHAVE',sans-serif] font-semibold text-[1.25vw] text-white">
+                    <div id="SF1" class=" cursor-pointer relative h-[21vw] bg-[url('images/PersonWBike1.png')] overflow-hidden flex flex-col justify-end items-center bg-cover bg-center bg-no-repeat rounded-[1.25vw] py-5">
+                        <h3 class="z-[40]">Smart & Connected</h3>
+                        <h4 id="SF1h4" class="z-[40] text-center text-[1vw]">Integrated Mobile App, Bluetooth Connectivity, and digital dashboard for a seamless riding experience.</h4>
+                    </div>
+                    <div id="SF2" class=" cursor-pointer relative h-[21vw] bg-[url('images/SleekDesign.png')] overflow-hidden flex flex-col justify-end items-center bg-cover bg-center bg-no-repeat rounded-[1.25vw] py-5">
+                        <h3 class="z-[40]">Sleek Design</h3>
+                        <h4 id="SF2h4" class="z-[40] text-center text-[1vw]">Modern aesthetics with a matte finish and neon accents for a stylish ride.</h4>
+                    </div>
+                    <div id="SF3" class=" cursor-pointer relative h-[21vw] bg-[url('images/Portable.png')] overflow-hidden flex flex-col justify-end items-center bg-cover bg-center bg-no-repeat rounded-[1.25vw] py-5 overflow-hidden">
+                        <h3 class="z-[40]">Portable & Foldable</h3>
+                        <h4 id="SF3h4" class="z-[40] text-center text-[1vw]">Easily folds for storage and transport, making it ideal for urban commuting.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main3" class="w-full h-[100vw] sm:h-[90vw] md:h-[80vw] lg:h-[70vw] xl:h-[60vw] 2xl:h-[60vw] flex flex-col justify-center items-center px-1 sm:px-1 md:px-1 lg:px-3 xl:px-3 2xl:px-4 gap-5 overflow-x-hidden">
+            <div id="serviceSlide" class="w-full h-3/5 sm:h-3/5 md:h-2/5 lg:h-2/5 xl:h-2/5 2xl:h-2/5 flex flex-col justify-center items-center pt-[3vw] pb-[1.5vw] px-[4vw] sm:px-[4vw] md:px-[4.25vw] lg:px-[4.5vw] xl:px-[5vw] 2xl:px-[5.25vw] gap-[0vw] overflow-hidden">
+                <div id="ssCon" class="w-full h-full flex justify-center items-center px-[4.5vw] gap-[10vw] overflow-hidden relative">
+                    <div id="ss1" class="w-full h-full flex justify-center items-center bg-transparent rounded-[4vw] shadow-lg border border-gray-500 border-b-gray-600 overflow-hidden absolute transition-all duration-500 opacity-0 translate-x-full">
+                        <div class="w-1/4 h-full bg-[url('images/Service1.1.png')] bg-cover bg-center bg-no-repeat"></div>
+                        <div class="w-2/4 h-full flex flex-col justify-center items-center font-['MOHAVE',sans-serif] leading-[2.5vw] bg-[url('images/Service1.1BG.png')] bg-cover bg-center bg-no-repeat">
+                            <h2 class="font-semibold text-[2vw]">INTRODUCING THE ALL-NEW EVO GEN+</h2>
+                            <h3 class="w-[80%] font-['INTER',sans-serif] text-[1vw] font-medium text-center leading-[1vw]">Get up to a whopping 320 km Range and 141kmph Top Speed. Tap to explore our most powerful scooter yet.</h3>
+                        </div>
+                        <div class="w-1/4 h-full bg-[url('images/Service2.1.png')] bg-cover bg-center bg-no-repeat"></div>
+                    </div>
+                    <div id="ss2" class="w-full h-full flex justify-center items-center bg-[url('images/Service1BG.png')] bg-[auto_110%] bg-top bg-no-repeat rounded-[4vw] shadow-lg border border-gray-500 border-b-gray-600 overflow-hidden absolute transition-all duration-500 opacity-1 translate-x-0">
+                        <div class="w-1/4 h-full bg-[url('images/Service1.png')] bg-cover bg-center bg-no-repeat"></div>
+                        <div class="w-2/4 h-full flex flex-col justify-center items-center font-['MOHAVE',sans-serif] leading-[2.5vw]">
+                            <h2 class="font-normal text-[2.5vw] font-['Alumni_Sans_Inline_One',sans-serif]">EV.GO!</h2>
+                            <h3 class="text-[rgb(0,175,184)] text-[2vw] font-[700]">#HYPERSERVICE</h3>
+                            <h4 class="flex flex-col justify-center items-center font-['INTER',sans-serif] font-semibold text-[0.8vw] gap-0 leading-[0.8vw]">
+                                AI Powered
+                                <span class="text-[0.6vw] font-normal">PROACTIVE MAINTENANCE ALERTS AND REMOTE DIAGNOSTICS</span>
+                            </h4>
+                        </div>
+                        <div class="w-1/4 h-full bg-[url('images/Service2.png')] bg-cover bg-center bg-no-repeat"></div>
+                    </div>
+                    <div id="ss3" class="w-full h-full flex justify-center items-center bg-gradient-to-r from-white via-[#84D4D4] to-[#3BB5B5] rounded-[4vw] shadow-lg border border-gray-500 border-b-gray-600 overflow-hidden absolute transition-all duration-500 opacity-0 translate-x-full">
+                        <div class="w-1/4 h-full bg-[url('images/Service1.3.png')] bg-cover bg-center bg-no-repeat"></div>
+                        <div class="w-2/4 h-full flex flex-col justify-center items-center font-['MOHAVE',sans-serif] leading-[2.5vw] bg-[url('images/Service1.1BG.png')] bg-cover bg-center bg-no-repeat">
+                            <h2 class="font-semibold text-[2vw]">Introducing EVO PowerPod</h2>
+                            <h3 class="w-[80%] font-['INTER',sans-serif] text-[1vw] font-medium text-center leading-[1vw]">Your EVO scooter's portable battery can now power your home</h3>
+                        </div>
+                        <div class="w-1/4 h-full bg-[url('images/Service2.2.png')] bg-cover bg-center bg-no-repeat"></div>
+                    </div>
+                    <div id="ss4" class="w-full h-full flex justify-center items-center rounded-[4vw] shadow-lg border border-gray-500 border-b-gray-600 overflow-x-hidden scroll-none absolute transition-all duration-500 opacity-0 translate-x-full">
+                        <img src="images\Service3.png" alt="" class="w-[100%] h-[100%] p-0 scroll-none">
+                    </div>  
+                </div>
+                <div id="btnSld" class="w-full h-[0.5vw] flex justify-center items-center font-custom text-[2vw] font-[300] gap-[0.25vw]">
+                    <div id="sssl1" class="w-auto h-auto text-black cursor-pointer">_</div>
+                    <div id="sssl2" class="w-auto h-auto text-gray-300 cursor-pointer">_</div>
+                    <div id="sssl3" class="w-auto h-auto text-gray-300 cursor-pointer">_</div>
+                    <div id="sssl4" class="w-auto h-auto text-gray-300 cursor-pointer">_</div>
+                </div>
+            </div>
+            <div id="storeLoc" class="w-full h-2/5 sm:h-2/5 md:h-3/5 lg:h-3/5 xl:h-3/5 2xl:h-3/5 flex justify-center items-center px-[4vw] sm:px-[4vw] md:px-[4.25vw] lg:px-[4.5vw] xl:px-[5vw] 2xl:px-[5.25vw] gap-0 sm:gap-1 md:gap-2 lg:gap-6 xl:gap-10 2xl:gap-12 pb-10">
+                <div id="section1" class="w-[62.5%] h-full flex flex-col pr-[2vw] gap-3 gap-0 sm:gap-0 md:gap-1 lg:gap-2 xl:gap-3 2xl:gap-4">
+                    <div id="textSec" class="w-full h-2/5 py-5">
+                        <h1 class="w-[80%] text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-semibold font-['Mohave']">
+                            Come on over. Meet us 
+                            <span class="flex items-center gap-2">
+                                in <span class="text-[rgb(0,175,184)] flex items-center">
+                                    Maharashtra 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                        <path fill="none" stroke="rgb(0,175,184)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5m0 0l5-5"/>
+                                    </svg>
+                                </span>
+                            </span>
+                        </h1>
+                        <h4 class="text-black text-sm sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-lg font-normal font-['Inter']">
+                            EV.GO! Electric Stores. Because nothing beats a one on one with the EVO 20A.
+                        </h4>
+                        <h3 class="w-auto text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium font-['Inter'] flex gap-1 justify-start items-center">
+                            More about EV.GO! Electric Stores
+                            <img src="SVG/Arrow right.svg" class="w-5 h-5 mt-1">
+                        </h3>
+                    </div>
+                    <div id="boxSec" class="w-full h-3/5 flex justify-start items-start mt-10 sm:mt-10 md:mt-5 lg:mt-5 xl:mt-0 2xl:mt-0 gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-6">
+                        <div class="w-32 sm:w-36 md:w-44 lg:w-44 xl:w-52 2xl:w-56 h-44 sm:h-48 md:h-52 lg:h-56 xl:h-64 2xl:h-72 font-['INTER',sans-serif] flex flex-col px-[1vw] pt-[1.5vw] gap-[0.5vw] rounded-[0.75vw] border-[0.1vw] border-[rgb(0,175,184)] bg-[rgba(191,240,243,0.5)]">
+                            <img src="SVG/Shop.svg" class="w-[2.75vw]">
+                            <h3 class="text-black text-base font-bold font-['Inter']">EV.GO Electric Store, Kalyan</h3>
+                            <h4 class="text-black text-xs font-medium font-['Inter']">245, Skyline Avenue, Kalyan (West), Maha</h4>
+                            <button class="w-36 sm:w-36 md:w-40 lg:w-40 xl:w-44 2xl:w-44 h-9 shadow-xl border-[0.15vw] border-[rgb(0,175,184)] text-black text-sm font-semibold font-['Inter'] flex justify-center self-center items-center mt-[3vw] sm:mt-[3vw] md:mt-[3.5vw] lg:mt-[3.5vw] xl:mt-[4vw] 2xl:mt-[4vw] bg-white rounded-[0.25vw] gap-[0.25vw]  py-1">
+                                Arrange a visit 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="10" viewBox="0 0 16 9">
+                                    <path fill="#000" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"/>
+                                    <path fill="#000" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="w-32 sm:w-36 md:w-44 lg:w-44 xl:w-52 2xl:w-56 h-44 sm:h-48 md:h-52 lg:h-56 xl:h-64 2xl:h-72 font-['INTER',sans-serif] flex flex-col px-[1vw] pt-[1.5vw] gap-[0.5vw] rounded-[0.75vw] border-[0.1vw] border-[rgb(0,175,184)] bg-[rgba(191,240,243,0.5)]">
+                            <img src="SVG/Shop.svg" class="w-[2.75vw]">
+                            <h3 class="text-black text-base font-bold font-['Inter']">EV.GO Electric Store, Nashik</h3>
+                            <h4 class="text-black text-xs font-medium font-['Inter']">Gangapur - Satpur Link Rd, near Someshwar, Bardan Phata, Nashik, Maha</h4>
+                            <button class="w-36 sm:w-36 md:w-40 lg:w-40 xl:w-44 2xl:w-44 h-9 shadow-xl border-[0.15vw] border-[rgb(0,175,184)] text-black text-sm font-semibold font-['Inter'] flex justify-center self-center items-center mt-[0vw] sm:mt-[0vw] md:mt-[1.8vw] lg:mt-[2.2vw] xl:mt-[2.75vw] 2xl:mt-[2.75vw] bg-white rounded-[0.25vw] gap-[0.25vw]  py-1">
+                                Arrange a visit 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="10" viewBox="0 0 16 9">
+                                    <path fill="#000" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"/>
+                                    <path fill="#000" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <button id="NBS" class="w-40 h-12 flex self-end justify-center items-center text-teal-500 text-sm sm:text-sm md:text-base lg:text-g xl:text-xl 2xl:text-2xl font-medium font-['Mohave'] gap-2 rounded-[1vw] border-[0.2vw] border-[rgb(0,175,184)]">
+                            Nearby Store 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20">
+                                <path fill="rgb(0,150,150)" fill-rule="evenodd" d="m2.542 2.154l7.254 7.26q.204.21.204.483a.73.73 0 0 1-.204.5l-7.575 7.398q-.575.476-1.022 0q-.448-.475 0-.98l7.08-6.918l-6.754-6.763q-.356-.514.066-.935q.422-.42.951-.045m9 0l7.254 7.26q.204.21.204.483a.73.73 0 0 1-.204.5l-7.575 7.398q-.575.476-1.022 0q-.449-.475 0-.98l7.08-6.918l-6.754-6.763q-.355-.514.066-.935q.422-.42.951-.045"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="section2" class="w-[37.5%] h-full flex flex-col bg-[url('images/ShowRoom.png')] bg-cover bg-center bg-no-repeat">
+                    <div class="w-[105%] ml-[-0.5vw] h-full bg-[linear-gradient(to_top,white_10%,transparent,transparent)]"></div>
+                </div>
+            </div>
+        </div> 
+        <div id="main4" class="w-full h-[35vw] flex justify-center items-center px-10">
+            <div id="textCon" class="w-1/2 h-full flex flex-col justify-around items-start px-0 sm:px-0 md:px-0 lg:px-4 xl:px-8 2xl:px-10 pb-3">
+                <div id="texts" class="font-['MOHAVE',sans-serif]">
+                    <h2 class="text-black text-4xl font-bold font-['Mohave']">Designed exclusively for you</h2>
+                    <h3 class="text-black text-2xl font-medium font-['Mohave']">Shine bold. Stay sleek. Embrace color. Your style, your choice.</h3>
+                </div>
+                <div id="colors" class="flex flex-col gap-5 px-0">
+                    <h3 class="text-black text-2xl font-normal font-['Inter']">Glossy White</h3>
+                    <div id="pallete" class="flex gap-6">
+                        <div id="color1" class="w-12 h-12 border border-black rounded-full cursor-pointer bg-[rgb(238,243,237)]"></div>
+                        <div id="color2" class="w-10 h-10 border border-black rounded-full cursor-pointer bg-[rgb(165,165,165)]"></div>
+                        <div id="color3" class="w-10 h-10 border border-black rounded-full cursor-pointer bg-[rgb(86,86,86)]"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="imgCon" class="w-1/2 h-full flex justify-start items-end">
+                <img id="Varient" src="images/EBikewBG2.2.png" class="w-[30vw] absolute mb-[4vw] ml-[6vw] z-[20]">
+                <img src="images\CYLINDER.png" class="w-[50vw] object-cover z-[0]">
+            </div>
+        </div>
+        
+        <div id="main5" class="w-full h-auto flex justify-center items-center ">
+            <div id="Centeredcontent" class="w-full h-auto flex justifu-center items-center py-[5vw] px-[0vw] sm:px-[1vw] md:px-[2vw] lg:px-[3vw] xl:px-[4vw] 2xl:px-[5vw]">
+                <div id="img" class="w-2/5 h-full flex justifu-center items-center py-[1vw] px-[1.7vw] mt-3">
+                    <img src="images\ChargingStation.png" class="w-full h-full">
+                </div>
+                <div id="childContent" class="w-3/5 h-full flex flex-col px-3 gap-4">
+                    <div id="textSec" class="w-full h-2/4 flex flex-col pt-4 gap-3">
+                        <h1 class="w-[80%] text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold font-['Mohave']">
+                            Locate a Hyper charger 
+
+                            <span class="flex items-center gap-2">
+                                Near You in 
+                                <span class="text-[rgba(0,175,184)] flex items-center">
+                                    Maharashtra 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                        <path fill="none" stroke="rgba(0, 175, 184, 1)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5m0 0l5-5"/>
+                                    </svg>
+                                </span>
+                            </span>
+                        </h1>
+                        <h4 class="text-black/90 text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-semibold font-['Inter']">
+                            On track for 2000+ Hypercharging points by 2026!
+                        </h4>
+                        <h3 class="font-['INTER',sans-serif] flex justify-between items-center gap-[0.5vw] font-medium">
+                            <p class="text-black text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-semibold font-['Inter'] flex justify-between items-center gap-[0.5vw]">
+                                See our entire network
+                                <img src="SVG/Arrow right.svg" class="w-[1.5vw] mt-1">
+                            </p>
+                            <div id="moveBTN" class="w-auto h-auto flex justify-end items-center gap-3">
+                                <svg class="w-auto h-auto border border-gray-500 flex justify-center items-center p-[0.15vw] rounded-full" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#000" fill-rule="evenodd" d="m15 4l2 2l-6 6l6 6l-2 2l-8-8z"/></svg>
+                                <svg class="w-auto h-auto border border-gray-500 flex justify-center items-center p-[0.15vw] rounded-full" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#000" fill-rule="evenodd" d="m9.005 4l8 8l-8 8L7 18l6.005-6L7 6z"/></svg>
+                            </div>
+                        </h3>
+                    </div>
+                    <div id="stnLOC" class="w-auto h-2/4 flex flex-col justify-center items-center gap-2">
+                        <div id="LOCBox" class="w-full h-full flex justify-center items-start overflow-hidden relative gap-3 pb-1">
+                            <div class="w-36 sm:w-40 md:w-40 lg:w-48 xl:w-56 2xl:w-56 h-56 flex flex-col justify-start items-start bg-blue-50 rounded-[1vw] px-[2vw] py-[1.5vw] pb-[4vw] gap-1 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.20)]">
+                                <img class="w-[4vw] sm:w-[3vw] md:w-[2.5vw] lg:w-[2vw] xl:w-[1.75vw] 2xl:w-[1.75vw] pb-2" src="SVG\Charge.svg" />
+                                <div class="text-black text-sm sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-bold font-['Inter']">EV.GO Hypercharger, KalyanStation, Thane </div>
+                                <div class="text-black text-xs font-medium font-['Inter']">245 ,Skyline Avenue, kalyan, (west) CA 90012,Maha</div>
+                            </div>
+                            <div class="w-36 sm:w-40 md:w-40 lg:w-48 xl:w-56 2xl:w-56 h-56 flex flex-col justify-start  items-start bg-blue-50 rounded-[1vw] px-[2vw] py-[1.5vw] pb-[3vw] gap-1 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.20)] overflow-hidden">
+                                <img class="w-[4vw] sm:w-[3vw] md:w-[2.5vw] lg:w-[2vw] xl:w-[1.75vw] 2xl:w-[1.75vw] pb-2" src="SVG\Charge.svg" />
+                                <div class="text-black text-sm sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-bold font-['Inter']">EV.GO Hypercharger, Nashik </div>
+                                <div class="text-black text-xs font-medium font-['Inter']">Gangapur - Satpur Link Rd, near Someshwar, Bardan Phata, Nashik, Maha</div>
+                            </div>
+                            <div class="w-36 sm:w-40 md:w-40 lg:w-48 xl:w-56 2xl:w-56 h-56 flex flex-col justify-start  items-start bg-blue-50 rounded-[1vw] px-[2vw] py-[1.5vw] gap-1 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.20)] overflow-hidden">
+                                <img class="w-[4vw] sm:w-[3vw] md:w-[2.5vw] lg:w-[2vw] xl:w-[1.75vw] 2xl:w-[1.75vw] pb-2" src="SVG\Charge.svg" />
+                                <div class="text-black text-sm sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-bold font-['Inter']">EV.GO Hypercharger, CSMT </div>
+                                <div class="text-black text-xs font-medium font-['Inter']">CSMT Stations ,Near By Jio   (west)  Sector 10, Navi Mumbai, Maharashtra - 410206</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main6" class="w-full h-auto flex flex-col justify-center items-center px-[0vw] sm:px-[0vw] md:px-[0vw] lg:px-[0.5vw] xl:px-[0.5vw] 2xl:px-[0.5vw]">
+            <div id="ProductSection" class="w-full h-auto flex flex-col justify-center items-center px-0 sm:px-0 md:px-0 lg:px-2 xl:px-3 2xl:px-4 py-[2.15vw]">
+                <div id="head" class="w-full h-auto flex justify-between items-center px-[4vw]">
+                    <h2 class="text-black text-4xl font-medium font-['Mohave']">Choose Your EVO</h2>
+                    <h4 class="text-black text-3xl font-normal font-['Alumni_Sans_Inline_One'] opacity-50 px-[1vw]">EV.GO!</h4>
+                </div>
+                <div id="ProSec" class="w-full h-auto flex flex-col font-['Inter'] justify-center items-center gap-[5vw] mt-5 px-[4vw]">
+                    <div id="ProImgaes"  class="w-full h-auto flex justify-center items-center">
+                        <div id="img" class="w-1/4 h-auto"></div>
+                        <div id="img" class="w-1/4 h-auto flex flex-col justify-center items-center">
+                            <img src="images\EBikewBG1.png" class="w-[14vw]">
+                            <div id="ProName" class="text-center font-custom text-black text-3xl font-normal flex pl-[4vw] flex gap-3">EVO 10<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5m0 0l5-5"/></svg></div>
+                        </div>
+                        <div id="img" class="w-1/4 h-auto flex flex-col justify-center items-center">
+                            <img src="images\EBikewBG2.png" class="w-[14vw]">
+                            <div id="ProName" class="text-center font-custom text-black text-3xl font-normal flex pl-[4vw] flex gap-3">EVO 20A<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5m0 0l5-5"/></svg></div>
+                        </div>
+                        <div id="img" class="w-1/4 h-auto flex flex-col justify-center items-center">
+                            <img src="images\EBikewBG4.png" class="w-[14vw]">
+                            <div id="ProName" class="text-center font-custom text-black text-3xl font-normal flex pl-[4vw] flex gap-3">EVO 50X<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5m0 0l5-5"/></svg></div>
+                        </div>
+                    </div>
+                    <div id="ProPrices"  class="w-full h-auto flex mt-[-4vw]">
+                        <div id="title" class="w-1/4 h-auto flex justify-start items-center text-black/50 text-xl font-medium font-['Inter']">Price</div>
+                        <div id="Price1" class="w-1/4 h-auto flex flex-col justify-center items-center">
+                            <h2 id="OGPrice" class="text-center text-black text-2xl font-semibold font-['Inter']">₹1,01999</h2>
+                            <h4 id="EMIPrice" class="text-center text-black text-xs font-medium font-['Inter']">EMI starts at ₹3,299</h4>
+                        </div>
+                        <div id="Price2" class="w-1/4 h-auto flex flex-col justify-center items-center">
+                            <h2 id="OGPrice" class="text-center text-black text-2xl font-semibold font-['Inter']">₹1,21999</h2>
+                            <h4 id="EMIPrice" class="text-center text-black text-xs font-medium font-['Inter']">EMI starts at ₹4,299</h4>
+                        </div>
+                        <div id="Price3" class="w-1/4 h-auto flex flex-col justify-center items-center">
+                            <h2 id="OGPrice" class="text-center text-black text-2xl font-semibold font-['Inter']">₹1,35,999</h2>
+                            <h4 id="EMIPrice" class="text-center text-black text-xs font-medium font-['Inter']">EMI starts at ₹3,500</h4>
+                        </div>
+                    </div>
+                    <div id="TopSpeed"  class="w-full h-auto flex justify-center items-center">
+                        <div id="title" class="w-1/4 h-auto text-black/50 text-xl font-medium font-['Inter']">Top speed</div>
+                        <h3 class="w-1/4 text-center text-black text-xl font-medium font-['Inter']">100 km/h</h3>
+                        <h3 class="w-1/4 text-center text-black text-xl font-medium font-['Inter']">150 km/h</h3>
+                        <h3 class="w-1/4 text-center text-black text-xl font-medium font-['Inter']">150 km/h</h3>
+                    </div>
+                    <div id="CRange"  class="w-full h-auto flex justify-center items-center">
+                        <div id="title" class="w-1/4 h-auto text-black/50 text-xl font-medium font-['Inter']">Certified Range</div>
+                        <h3 class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">80 km</h3>
+                        <h3 class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">85 km</h3>
+                        <h3 class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">100 km</h3>
+                    </div>
+                    <div id="Modes"  class="w-full h-auto flex">
+                        <div id="title" class="w-1/4 h-auto text-black/50 text-xl font-medium font-['Inter']">Modes</div>
+                        <h3 class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">Eco, Normal</h3>
+                        <h3 class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">Eco, Normal, Sports</h3>
+                        <h3 class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">Eco, Normal Hyper</h3>
+                    </div>
+                    <div id="Colours"  class="w-full h-auto flex">
+                        <div id="title" class="w-1/4 h-auto text-black/50 text-xl font-medium font-['Inter'] flex justify-start items-center">Colours</div>
+                        <div id="palette" class="w-1/4 h-auto flex justify-center items-center gap-4">
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(238,243,237)] border border-black"></div>
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(0,0,0)] border border-black"></div>
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(150,185,187)] border border-black"></div>
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(103,119,124)] border border-black"></div>
+                        </div>
+                        <div id="palette" class="w-1/4 h-auto flex justify-center items-center gap-4">
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(255,255,255)] border border-black"></div>
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(0,0,0)] border border-black"></div>
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(103,119,124)] border border-black"></div>
+                        </div>
+                        <div id="palette" class="w-1/4 h-auto flex justify-center items-center gap-4">
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(255,255,255)] border border-black"></div>
+                            <div id="color" class="w-5 h-5 rounded-full bg-[rgb(0,0,0)] border border-black"></div>
+                        </div>
+                    </div>
+                    <div id="ChargeTime"  class="w-full h-auto flex justify-center items-center">
+                        <div id="title" class="w-1/4 h-auto text-black/50 text-xl font-medium font-['Inter'] flex justify-start items-center">Charging Time</div>
+                        <div id="CTime" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">7.5 Hrs</div>
+                        <div id="CTime" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">8.5 Hrs</div>
+                        <div id="CTime" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">10 Hrs</div>
+                    </div>
+                    <div id="SBW"  class="w-full h-auto flex justify-center items-center">
+                        <div id="title" class="w-1/4 h-auto text-black/50 text-xl font-medium font-['Inter'] flex justify-start items-center">Standard Battery Warranty </div>
+                        <div id="SBWPeriod" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">4yrs/30,000 kms</div>
+                        <div id="SBWPeriod" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">4yrs/40,000 kms</div>
+                        <div id="SBWPeriod" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">4yrs/60,000 kms</div>
+                    </div>
+                    <div id="PeakPower"  class="w-full h-auto flex justify-center items-center">
+                        <div id="title" class="w-1/4 h-auto text-black/50 text-xl font-medium font-['Inter'] flex justify-start items-center">Peak Power</div>
+                        <div id="PP" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">8 kW</div>
+                        <div id="PP" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">10 kW</div>
+                        <div id="PP" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">15 kW</div>
+                    </div>
+                    <div id="KeyType"  class="w-full h-auto flex justify-center items-center">
+                        <div id="title" class="w-1/4 h-auto text-black/50 text-xl font-medium font-['Inter'] flex justify-start items-center">Key Type</div>
+                        <div id="type" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">Smart Key</div>
+                        <div id="type" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">Smart Key</div>
+                        <div id="type" class="w-1/4 h-auto text-center text-black text-xl font-medium font-['Inter']">Smart Key,Mobile Key</div>
+                    </div>
+                </div> 
+                <div id="Info" class="w-full h-auto px-[4vw] mt-[5vw] flex justify-between items-center">
+                    <div id="tekst" class="w-[45vw] text-black text-base font-normal font-['Inter']">
+                        "The prices mentioned above are ex-showroom. For any configuration changes or alternatives, please contact us." <span class="hover:underline underline-offset-2">support@evgo.com</span>
+                    </div>
+                    <div id="battons" class="font-['Inter'] font-bold text-[1vw] flex gap-3">
+                        <button class="flex justify-center items-center rounded-[1.5vw] w-48 h-16 relative bg-[radial-gradient(ellipse_190.45%_6301.96%_at_0.00%_-0.00%,_#BFF0F3_1%,_#00AFB8_100%)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-black text-base font-bold font-['Inter']">Download or Share</button>
+                        <button class="w-48 h-16 flex justify-center items-center rounded-[1.5vw] shadow-lg border-2 border-[rgb(0,175,184)] gap-2 text-black text-base font-bold font-['Inter']">All EVO List <img src="SVG/Arrow right.svg" class="w-[1.5vw]"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main7" class="w-full h-full flex flex-col justify-center items-center p-0 mt-10 font-['Inter']">
+            <div id="rater" class="w-full h-3/5 flex flex-col justify-start items-center px-[5vw]">
+                <h1 class="text-black text-4xl font-bold font-['Inter']">What Our Riders Say</h1>
+                <h3 class="flex gap-1 text-black/80 text-xl font-semibold font-['Inter']">Average Rating Display: <img src="SVG\Star Yellow.svg" class="">    4.8/5 (Based on 3,000+ Verified Reviews!)</h3>
+                <div id="RatingReview" class="w-full h-auto flex gap-8 mt-[2.25vw] px-3">
+                    <div id="RR" class="w-96 h-80 flex flex-col justify-center items-center py-[1.5vw] border border-[rgb(82,222,229)] rounded-[1vw]">
+                        <div id="imgdiv" class="w-[4vw] h-[4vw] overflow-hidden rounded-full">
+                            <img src="images\3d_avatar.png" class="">
+                        </div>
+                        <div id="name" class="text-black text-base font-bold font-['Inter'] mt-2">Swaroop.N</div>
+                        <div id="line" class="w-20 h-[0.1vw] bg-stone-500 mt-1"></div>
+                        <div id="review" class="w-[70%] text-center justify-center text-black/80 text-base font-medium font-['Inter'] mt-3">EV.go made my daily commute easy.Great customer support, amazing features.</div>
+                        <div id="starts" class="flex justify-center items-center mt-12">
+                            <img src="SVG\Star Yellow.svg">
+                            <img src="SVG\Star Yellow.svg">
+                            <img src="SVG\Star Yellow.svg">
+                            <img src="SVG\Star Yellow.svg">
+                            <img src="SVG\Star Yellow.svg">
+                        </div>
+                        <div id="VerTime" class="flex mt-7 text-[0.75vw] text-stone-700 justify-between gap-10">
+                            <h5 class="text-black/40 text-xs font-medium font-['Inter']">✔ Verified Rider</h5>
+                            <div id="time" class="flex justify-center items-center gap-1">
+                                <img src="SVG\Clock.svg" class="">
+                                <h5 class="text-black/50 text-xs font-medium font-['Inter']">2 week ago</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="RR" class="w-96 h-80 flex flex-col justify-center items-center py-[1.5vw] border border-[rgb(82,222,229)] rounded-[1vw]">
+                        <div id="imgdiv" class="w-[4vw] h-[4vw] overflow-hidden rounded-full">
+                            <img src="images\Avataar.png" class="">
+                        </div>
+                        <div id="name" class="text-black text-base font-bold font-['Inter'] mt-2">Sneha.M</div>
+                        <div id="line" class="w-20 h-[0.1vw] bg-stone-500 mt-1"></div>
+                        <div id="review" class="w-[70%] text-center justify-center text-black/80 text-base font-medium font-['Inter'] mt-3">Smooth experience, great customer support, and the smart key feature is amazing</div>
+                        <div id="starts" class="flex justify-center items-center mt-12">
+                            <img src="SVG\Star Yellow.svg" class="">
+                            <img src="SVG\Star Yellow.svg" class="">
+                            <img src="SVG\Star Yellow.svg" class="">
+                            <img src="SVG\Star Yellow.svg" class="">
+                            <img src="SVG\Star White.svg" class="">
+                        </div>
+                        <div id="time" class="w-full flex justify-end items-end gap-1 text-[0.75vw] text-stone-700 mt-7 px-[4vw]">
+                            <img src="SVG\Clock.svg" class="">
+                            <h5 class="text-black/50 text-xs font-medium font-['Inter']">2 week ago</h5>
+                        </div>
+                    </div>
+                    <div id="RR" class="w-96 h-80 flex flex-col justify-center items-center py-[1.5vw] border border-[rgb(82,222,229)] rounded-[1vw]">
+                        <div id="imgdiv" class="w-[4vw] h-[4vw] overflow-hidden rounded-full">
+                            <img src="images\Avataar1.png" class="">
+                        </div>
+                        <div id="name" class="text-black text-base font-bold font-['Inter'] mt-2">Ashu.G</div>
+                        <div id="line" class="w-20 h-[0.1vw] bg-stone-500 mt-1"></div>
+                        <div id="review" class="w-[70%] text-center justify-center text-black/80 text-base font-medium font-['Inter'] mt-3">Battery life is impressive, and the booking process is super quick. Just wish there were more color options</div>
+                        <div id="starts" class="flex justify-center items-center mt-12">
+                            <img src="SVG\Star Yellow.svg" class="">
+                            <img src="SVG\Star Yellow.svg" class="">
+                            <img src="SVG\Star Yellow.svg" class="">
+                            <img src="SVG\Star Yellow.svg" class="">
+                            <img src="SVG\Star Yellow.svg" class="">
+                        </div>
+                        <div id="VerTime" class="flex mt-7 text-[0.75vw] text-stone-700 justify-between gap-10">
+                            <h5 class="text-black/40 text-xs font-medium font-['Inter']">✔ Verified Rider</h5>
+                            <div id="time" class="flex justify-center items-center gap-1">
+                                <img src="SVG\Clock.svg" class="">
+                                <h5 class="text-black/50 text-xs font-medium font-['Inter']">2 week ago</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="YTReview" class="w-full h-2/5 flex flex-col justify-start items-center px-[6vw] mt-20">
+                <h1 class="w-auto h-auto text-black text-2xl font-semibold font-['Inter']">Hit Play & Ride Along with EV.go Users!</h1>
+                <div id="YT" class="w-full h-full flex justify-between gap-8 mt-[1vw] pt-2 font-['Inter'] tracking-[0.025vw] leading-[1vw]  text-white text-[0.75vw] pt-2 font-light">
+                    <div id="yt" class="w-96 h-60 flex flex-col justify-center items-center rounded-[1vw] bg-[url('images/YTThumbnail1.png')]  bg-cover bg-center bg-no-repeat overflow-hidden">
+                        <div id="trans" class="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end text-white text-[0.75vw] px-5 py-5 font-light">
+                            <img src="SVG\Youtube.svg"  class="w-20 h-20 absolute ml-[8vw] self-center">
+                            <h3 class="text-white text-xs font-medium font-['Inter']">EV.GO | EVO  Road Test Review | Better Commuter Than DIN</h3>
+                        </div>
+                    </div>
+                    <div id="yt" class="w-96 h-60 flex flex-col justify-center items-center rounded-[1vw] bg-[url('images/YTThumbnail2.png')]  bg-cover bg-center bg-no-repeat overflow-hidden">
+                        <div id="trans" class="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end text-white text-[0.75vw] px-5 py-5 font-light">
+                            <img src="SVG\Youtube.svg"  class="w-20 h-20 absolute ml-[8vw] self-center">
+                            <h3 class="text-white text-xs font-medium font-['Inter']">EV.GO | EVO 20A Road Test Review | Multiple Top Features Of The E-Bike</h3>
+                        </div>
+                    </div>
+                    <div id="yt" class="w-96 h-60 flex flex-col justify-center items-center rounded-[1vw] bg-[url('images/YTThumbnail3.png')]  bg-cover bg-center bg-no-repeat overflow-hidden">
+                        <div id="trans" class="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end text-white text-[0.75vw] px-5 py-5 font-light">
+                            <img src="SVG\Youtube.svg"  class="w-20 h-20 absolute ml-[8vw] self-center">
+                            <h3 class="text-white text-xs font-medium font-['Inter']">EV.GO | EVO  Road Test Review | Better Commuter Than DIN</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main8" class="w-full h-[70%] flex flex-col justify-start items-center bg-[url('images/MAin8_Background.png')] mt-10 px-5 font-['Inter']">
+            <div id="Con" class="w-full h-full flex px-10">
+                <div id="AboutSec" class="w-3/6 h-full flex flex-col justify-between items-center pt-10 pb-[7.5vw]">
+                    <div id="text1" class="w-full h-1/3 flex flex-col justify-center items-center gap-1 pl-4">
+                        <h1 class="text-black text-4xl font-semibold font-['Inter']">Everything You Need to Know About EV.go!</h1>
+                        <h3 class="text-black/80 text-xl font-normal pr-10 font-['Inter']">We Read Minds (Not Really), But Here’s What You Want to Know!</h3>
+                    </div>
+                    <div id="text2" class="w-full h-1/3 pl-4">
+                        <h2 class="text-black text-2xl font-medium font-['Inter']">Want personalized help?</h2>
+                        <h3 class="text-black/80 text-xl font-medium font-['Inter']">Book a call with us!</h3>
+                        <div id="btnes" class="flex justify-start items-end mt-[2vw] gap-5">
+                            <button class="w-60 h-16 flex justify-center items-center bg-white text-black text-xl font-semibold font-['Inter'] rounded-[1vw] shadow-lg border-2 border-[rgb(0,175,184)]">Schedule a Call</button>
+                            <h3 class="cursor-pointer text-teal-500 text-base font-semibold font-['Inter']">View all questions →</h3>
+                        </div>
+                    </div>
+                </div>
+                <div id="QA" class="w-3/6 h-full flex flex-col text-black text-xl font-semibold font-['Inter'] pr-8 pl-[1vw] py-[4vw] gap-6">
+                    <div id="qa1" class="relative flex justify-between items-center cursor-pointer pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[0.1vw] after:bg-gradient-to-r after:from-transparent after:via-gray-300 after:to-transparent after:from-[5%] after:via-[20%] after:to-[80%]">
+                        <h3>How long does it take to fully charge an EV.go bike?</h3>
+                        <svg class="rotate-90 flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5" stroke-width="1"/></svg>
+                    </div>
+                    <div id="qa2" class="relative flex justify-between items-center cursor-pointer pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[0.1vw] after:bg-gradient-to-r after:from-transparent after:via-gray-300 after:to-transparent after:from-[5%] after:via-[20%] after:to-[80%]"">
+                        <h3>What is the battery warranty for EV.go bikes?</h3>
+                        <svg class="rotate-90 flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5" stroke-width="1"/></svg>
+                    </div>
+                    <div id="qa3" class="relative flex justify-between items-center cursor-pointer pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[0.1vw] after:bg-gradient-to-r after:from-transparent after:via-gray-300 after:to-transparent after:from-[5%] after:via-[20%] after:to-[80%]"">
+                        <h3>Do EV.go bikes come with a smart key?</h3>
+                        <svg class="rotate-90 flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5" stroke-width="1"/></svg>
+                    </div>
+                    <div id="qa4" class="relative flex justify-between items-center cursor-pointer pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[0.1vw] after:bg-gradient-to-r after:from-transparent after:via-gray-300 after:to-transparent after:from-[5%] after:via-[20%] after:to-[80%]"">
+                        <h3>Can I ride EV.go bikes in the rain?</h3>
+                        <svg class="rotate-90 flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5" stroke-width="1"/></svg>
+                    </div>
+                    <div id="qa5" class="relative flex justify-between items-center cursor-pointer pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[0.1vw] after:bg-gradient-to-r after:from-transparent after:via-gray-300 after:to-transparent after:from-[5%] after:via-[20%] after:to-[80%]"">
+                        <h3>Where can I find EV.go service centers?</h3>
+                        <svg class="rotate-90 flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5" stroke-width="1"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main9" class="w-full h-[50%] flex justify-center items-center bg-[rgb(38,50,56)] px-0 font-['MOHAVE',sans-serif]">
+            <div id="Contact" class="w-[95vw] h-full flex justify-center items-start px-10 gap-[6vw] py-[2.5vw] text-slate-300">
+                <div id="WebName" class="w-1/9 h-auto text-white text-3xl font-normal font-['Alumni_Sans_Inline_One'] mt-[-0.5vw]">EV.GO!</div>
+                <div id="ConProduct" class=" flex flex-col text-stone-300 text-base font-medium font-['Mohave'] gap-2">
+                    <div id="title" class="text-white text-xl font-medium font-['Mohave']">Products</div>
+                    <div id="ConPro" class="cursor-pointer mt-3">EVO 10</div>
+                    <div id="ConPro" class="cursor-pointer">EVO 10 PRO</div>
+                    <div id="ConPro" class="cursor-pointer">EVO 20</div>
+                    <div id="ConPro" class="cursor-pointer">EVO 20+</div>
+                    <div id="ConPro" class="cursor-pointer">EVO GENA</div>
+                    <div id="ConPro" class="cursor-pointer">EVO GEN+</div>
+                    <div id="ConPro" class="cursor-pointer">EVO COMET </div>
+                    <div id="ConPro" class="cursor-pointer">RENTAL SCOOTERS </div>
+                </div>
+                <div id="ConTandD" class=" flex flex-col text-stone-300 text-base font-medium font-['Mohave'] gap-2">
+                    <div id="title" class="text-white text-xl font-medium font-['Mohave']">Tech & Design</div>
+                    <div id="TD" class="cursor-pointer">Software</div>
+                    <div id="TD" class="cursor-pointer">APP</div>
+                    <div id="TD" class="cursor-pointer">Manufacturing</div>
+                    <div id="TD" class="cursor-pointer">Design</div>
+                    <div id="TD" class="cursor-pointer">Future Factory</div>
+                </div>
+                <div id="ConOS" class=" flex flex-col text-stone-300 text-base font-medium font-['Mohave'] gap-2">
+                    <div id="title" class="text-white text-xl font-medium font-['Mohave']">Ownership</div>
+                    <div id="os" class="cursor-pointer">EV.GO Electric Store</div>
+                    <div id="os" class="cursor-pointer">4000 Stores</div>
+                    <div id="os" class="cursor-pointer">Accessories</div>
+                    <div id="os" class="cursor-pointer">Community</div>
+                    <div id="os" class="cursor-pointer">Hyperservice</div>
+                    <div id="os" class="cursor-pointer">Battery Warranty</div>
+                    <div id="os" class="cursor-pointer">RENTAL BUSINESS</div>
+                </div>
+                <div id="ConCompany" class=" flex flex-col text-stone-300 text-base font-medium font-['Mohave'] gap-2">
+                    <div id="title" class="text-white text-xl font-medium font-['Mohave']">Company</div>
+                    <div id="ConCom" class="cursor-pointer">About Us</div>
+                    <div id="ConCom" class="cursor-pointer">Investor</div>
+                    <div id="ConCom" class="cursor-pointer">Blogs</div>
+                    <div id="ConCom" class="cursor-pointer">Careers</div>
+                </div>
+                <div id="Extra" class="w-[15vw] flex flex-col gap-3">
+                    <div id="iconsList" class="flex justify-start items-center gap-3">
+                      <img src="SVG/Instagram.svg" class="w-5">
+                      <img src="SVG/YoutubeSVG.svg" class="w-6">
+                      <img src="SVG/FaceBook.svg" class="w-4">
+                      <img src="SVG/TwitterSVG.svg" class="w-6">
+                      <img src="SVG/LinkedIn.svg" class="w-6">
+                    </div>
+                    <div id="Context" class="text-white text-base font-medium font-['Mohave']">The EV.GO rental scooter app is coming soon to Play Store and the App Store.</div>
+                    <div id="imgList" class="flex justify-start items-center gap-4">
+                        <img src="images\PlayStore.png" class="w-[2.5vw]">
+                        <img src="images\AppStore.png" class="w-[2.5vw]">
+                    </div>
+                    <div id="Context" class="text-stone-300 text-sm font-medium font-['Mohave']">Stay tuned for a smarter, greener, and more convenient ride</div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="script.js" type="module" async defer></script>
+
+    </body>
+</html>

@@ -15,11 +15,13 @@ function getRandom(min, max) {
       this.containerWidth = containerWidth;
       this.containerHeight = containerHeight;
 
-      this.x = getRandom(0, containerWidth);
-      this.y = getRandom(0, containerHeight);
-      this.vx = getRandom(-0.01, 0.01);  // Slower motion
+      this.size = getRandom(12, 18);
+      this.x = (containerWidth - this.size) / 2;
+      this.y = (containerHeight - this.size) / 2;
+
+      this.vx = getRandom(-0.01, 0.01);
       this.vy = getRandom(-0.01, 0.01);
-      this.size = getRandom(10, 20);
+
       this.targetSize = getRandom(10, 20);
       this.borderRadius = getRandomBorderRadius();
       this.nextBorderRadius = getRandomBorderRadius();
@@ -29,24 +31,28 @@ function getRandom(min, max) {
     }
 
     update(delta) {
-      // Cap delta time in case tab was hidden
-      delta = Math.min(delta, 50);
+      delta = Math.min(delta, 50); // protect against tab switch issues
 
-      // Move
+      const margin = 5; // buffer to avoid container edges (in vw)
+
+      // Move particle
       this.x += this.vx * delta;
       this.y += this.vy * delta;
 
-      // Bounce off container bounds
-      if (this.x < 0 || this.x > this.containerWidth - this.size) this.vx *= -1;
-      if (this.y < 0 || this.y > this.containerHeight - this.size) this.vy *= -1;
+      // Constrain motion to avoid corners
+      const maxX = this.containerWidth - this.size - margin;
+      const maxY = this.containerHeight - this.size - margin;
 
-      // Smoothly change size
+      if (this.x < margin || this.x > maxX) this.vx *= -1;
+      if (this.y < margin || this.y > maxY) this.vy *= -1;
+
+      // Smooth size change
       this.size += (this.targetSize - this.size) * 0.005 * delta;
       if (Math.abs(this.size - this.targetSize) < 0.1) {
         this.targetSize = getRandom(10, 20);
       }
 
-      // Border radius morphing
+      // Smooth morphing of border-radius
       this.borderLerp += 0.001 * delta;
       if (this.borderLerp >= 1) {
         this.borderLerp = 0;
@@ -84,8 +90,6 @@ function getRandom(min, max) {
 
     function animate(time) {
       let delta = time - lastTime;
-
-      // Protect against huge time jumps after tab switch
       delta = Math.min(delta, 50);
       lastTime = time;
 

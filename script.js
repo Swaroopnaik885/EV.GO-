@@ -2,58 +2,103 @@
 
 function getRandom(min, max) {
     return Math.random() * (max - min) + min;
-}
+  }
 
-function getRandomBorderRadius() {
+  function getRandomBorderRadius() {
     return `${getRandom(30, 60)}% ${getRandom(30, 60)}% ${getRandom(30, 60)}% ${getRandom(30, 60)}% / 
             ${getRandom(30, 60)}% ${getRandom(30, 60)}% ${getRandom(30, 60)}% ${getRandom(30, 60)}%`;
-}
+  }
 
-function isOverlapping(x1, y1, s1, x2, y2, s2) {
-    if (x2 === -1000 || y2 === -1000 || s2 === -1000) return false; // Prevent false overlaps when no previous position
-    return Math.hypot(x1 - x2, y1 - y2) < (s1 + s2) * 0.7;
-}
+  class Particle {
+    constructor(element, containerWidth, containerHeight) {
+      this.el = element;
+      this.containerWidth = containerWidth;
+      this.containerHeight = containerHeight;
 
-function moveCircle(circle, otherCircle, containerWidth, containerHeight) {
-    const size = getRandom(10, 18);
-    let x, y, attempts = 0;
-    
-    do {
-        x = getRandom(size / 2, containerWidth - size * 1.2);
-        y = getRandom(size / 2, containerHeight - size * 1.2);
-        attempts++;
-        if (attempts > 50) break;
-    } while (isOverlapping(x, y, size, parseFloat(otherCircle.dataset.x ?? -1000), parseFloat(otherCircle.dataset.y ?? -1000), parseFloat(otherCircle.dataset.size ?? -1000)));
+      this.x = getRandom(0, containerWidth);
+      this.y = getRandom(0, containerHeight);
+      this.vx = getRandom(-0.01, 0.01);  // Slower motion
+      this.vy = getRandom(-0.01, 0.01);
+      this.size = getRandom(10, 20);
+      this.targetSize = getRandom(10, 20);
+      this.borderRadius = getRandomBorderRadius();
+      this.nextBorderRadius = getRandomBorderRadius();
+      this.borderLerp = 0;
 
-    circle.style.width = `${size}vw`;
-    circle.style.height = `${size}vw`;
-    circle.style.transform = `translate(${x}vw, ${y}vw)`;
-    circle.style.borderRadius = getRandomBorderRadius();
+      this.updateStyle();
+    }
 
-    circle.dataset.x = x;
-    circle.dataset.y = y;
-    circle.dataset.size = size;
+    update(delta) {
+      // Cap delta time in case tab was hidden
+      delta = Math.min(delta, 50);
 
-    setTimeout(() => requestAnimationFrame(() => moveCircle(circle, otherCircle, containerWidth, containerHeight)), getRandom(2500, 5000));
-}
+      // Move
+      this.x += this.vx * delta;
+      this.y += this.vy * delta;
 
-function startAnimation() {
-    const container = document.getElementById("container");
-    if (!container) return;
+      // Bounce off container bounds
+      if (this.x < 0 || this.x > this.containerWidth - this.size) this.vx *= -1;
+      if (this.y < 0 || this.y > this.containerHeight - this.size) this.vy *= -1;
 
+      // Smoothly change size
+      this.size += (this.targetSize - this.size) * 0.005 * delta;
+      if (Math.abs(this.size - this.targetSize) < 0.1) {
+        this.targetSize = getRandom(10, 20);
+      }
+
+      // Border radius morphing
+      this.borderLerp += 0.001 * delta;
+      if (this.borderLerp >= 1) {
+        this.borderLerp = 0;
+        this.borderRadius = this.nextBorderRadius;
+        this.nextBorderRadius = getRandomBorderRadius();
+      }
+
+      this.updateStyle();
+    }
+
+    updateStyle() {
+      this.el.style.transform = `translate(${this.x}vw, ${this.y}vw)`;
+      this.el.style.width = `${this.size}vw`;
+      this.el.style.height = `${this.size}vw`;
+      this.el.style.borderRadius = this.lerpBorderRadius(this.borderRadius, this.nextBorderRadius, this.borderLerp);
+    }
+
+    lerpBorderRadius(from, to, t) {
+      const fromValues = from.match(/[\d.]+/g).map(Number);
+      const toValues = to.match(/[\d.]+/g).map(Number);
+      const lerped = fromValues.map((v, i) => v + (toValues[i] - v) * t);
+      return `${lerped[0]}% ${lerped[1]}% ${lerped[2]}% ${lerped[3]}% / 
+              ${lerped[4]}% ${lerped[5]}% ${lerped[6]}% ${lerped[7]}%`;
+    }
+  }
+
+  function startParticles() {
     const containerWidth = 50;
     const containerHeight = 60;
 
-    const circle1 = document.getElementById("circle1");
-    const circle2 = document.getElementById("circle2");
+    const p1 = new Particle(document.getElementById('circle1'), containerWidth, containerHeight);
+    const p2 = new Particle(document.getElementById('circle2'), containerWidth, containerHeight);
 
-    if (circle1 && circle2) {
-        requestAnimationFrame(() => moveCircle(circle1, circle2, containerWidth, containerHeight));
-        requestAnimationFrame(() => moveCircle(circle2, circle1, containerWidth, containerHeight));
+    let lastTime = performance.now();
+
+    function animate(time) {
+      let delta = time - lastTime;
+
+      // Protect against huge time jumps after tab switch
+      delta = Math.min(delta, 50);
+      lastTime = time;
+
+      p1.update(delta);
+      p2.update(delta);
+
+      requestAnimationFrame(animate);
     }
-}
 
-window.onload = startAnimation;
+    requestAnimationFrame(animate);
+  }
+
+  window.onload = startParticles;
 
 
 
